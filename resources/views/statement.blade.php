@@ -6,7 +6,9 @@
                 <h4>Import List</h4>
             </div>
             <div class="">
-
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cashEntry">
+                    Add Cash Entry
+                </button>
 
 
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#import">
@@ -87,7 +89,7 @@
 
                         <div class="col-md-12">
                             <label for="">Type</label>
-                            <select name="type" id="type" class="form-control" required>
+                            <select name="type" id="" class="form-control type" required>
                                 <option value="">Select</option>
                                 <option value="customer">customer</option>
                                 <option value="vendor">vendor</option>
@@ -106,7 +108,7 @@
 
                         <div class="col-md-12 mt-3">
                             <label for="">Project</label>
-                            <select name="project_id" id="project_id" class="form-control" required>
+                            <select name="project_id" id="project_id" class="form-control select2" required>
                                 <option value="">Select</option>
                                 @foreach ($project as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -116,7 +118,7 @@
                         </div>
                         <div class="col-md-12 mt-3">
                             <label for="">Sub Account</label>
-                            <select name="sub_account_id" id="sub_account_id" class="form-control" required>
+                            <select name="sub_account_id" id="sub_account_id" class="form-control select2" required>
                                 <option value="">Select</option>
                                 @foreach ($sub_account as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -182,101 +184,199 @@
     <div class="modal fade" id="addCustVendor">
         <div class="modal-dialog modal-lg">
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><span id="modal_name"> </span></h5>
+            <form action="{{ route('addCustomerVendor') }}">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><span id="modal_name"> </span></h5>
+                    </div>
+                    <div class="modal-body row">
 
+                        {{-- <input type="hidden" name="id" id="id"> --}}
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Number</label>
+                            <input type="number" name="number" id="number" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Email</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <label for="">DOB</label>
+                            <input type="date" name="dob" id="dob" class="form-control">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <label for="">Pan Card</label>
+                            <input type="" name="pan_card" id="pan_card" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Adhar Card</label>
+                            <input type="" name="adhar_card" id="adhar_card" class="form-control">
+                        </div>
+
+
+                        <div class="col-md-12 mt-4">
+                            <label for="">Address</label>
+                            <textarea name="address" id="address" class="form-control"></textarea>
+                        </div>
+
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">State</label>
+                            <select name="state" id="state" class="form-control">
+                                <option value="">---Select State---</option>
+                                @foreach ($state as $item)
+                                    <option value="{{ $item->state }}">{{ $item->state }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">District</label>
+                            <select name="district" id="city" class="form-control">
+                                <option value="">---Select District---</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">City</label>
+                            <input name="city" class="form-control">
+
+
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Pincode</label>
+                            <input type="number" name="pincode" id="pincode" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Active</label>
+                            <select name="active" id="active" class="form-control" required>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <label for="">Type</label>
+                            <select name="type" id="" class="form-control" required>
+                                <option value="" selected disabled>Selected Type</option>
+                                <option value="customer">Customer</option>
+                                <option value="vendor">Vendor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="">Save
+                            changes</button>
+                    </div>
                 </div>
-                <div class="modal-body row">
-
-                    <input type="hidden" name="id" id="id">
-
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" required>
-
-                    </div>
-
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Number</label>
-                        <input type="number" name="number" id="number" class="form-control" required>
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
-                    </div>
-                    <div class="col-md-6 mt-4">
-                        <label for="">DOB</label>
-                        <input type="date" name="dob" id="dob" class="form-control">
-                    </div>
-                    <div class="col-md-6 mt-4">
-                        <label for="">Pan Card</label>
-                        <input type="" name="pan_card" id="pan_card" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Adhar Card</label>
-                        <input type="" name="adhar_card" id="adhar_card" class="form-control">
-                    </div>
-
-
-                    <div class="col-md-12 mt-4">
-                        <label for="">Address</label>
-                        <textarea name="address" id="address" class="form-control"></textarea>
-                    </div>
-
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">State</label>
-                        <select name="state" id="state" class="form-control">
-                            <option value="">---Select State---</option>
-                            @foreach ($state as $item)
-                                <option value="{{ $item->state }}">{{ $item->state }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">District</label>
-                        <select name="district" id="city" class="form-control">
-                            <option value="">---Select District---</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">City</label>
-                        <input name="city" class="form-control">
-
-
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Pincode</label>
-                        <input type="number" name="pincode" id="pincode" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="">Active</label>
-                        <select name="active" id="active" class="form-control" required>
-                            <option value="1">Active</option>
-                            <option value="0">InActive</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnAddCustomer" class="btn btn-primary" id="">Save
-                        changes</button>
-                </div>
-            </div>
+            </form>
 
         </div>
     </div>
 
 
+    <form action="{{ route('addCashEntry') }}" method="POST" class="needs-validation" novalidate>
+        @csrf
+        <div class="modal fade" id="cashEntry" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Cash Entry
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body row">
+
+
+
+                            <div class="col-md-6">
+                                <label for="">Type</label>
+                                <select name="type" id="" class="form-control type" required>
+                                    <option value="">Select</option>
+                                    <option value="customer">customer</option>
+                                    <option value="vendor">vendor</option>
+                                    <option value="office">office</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="">Select</label>
+                                <select name="cust_office_vendor_id" id="cust_vendor" class="form-control" required>
+                                    <option value="">Select</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6 mt-3">
+                                <label for="">Project</label>
+                                <select name="project_id" id="project_id" class="form-control" required>
+                                    <option value="">Select</option>
+                                    @foreach ($project as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Sub Account</label>
+                                <select name="sub_account_id" id="sub_account_id" class="form-control" required>
+                                    <option value="">Select</option>
+                                    @foreach ($sub_account as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Date</label>
+                                <input type="date" name="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Ref/Cheque ID</label>
+                                <input type="text" name="ref_no" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="">Details</label>
+                                <textarea name="details" id="" class="form-control" required></textarea>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Debit</label>
+                                <input type="number" step="0.01" name="debit" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Credit</label>
+                                <input type="number" step="0.01" name="credit" class="form-control" required>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 
 
@@ -327,7 +427,7 @@
         });
 
 
-        $("#type").on("change", function() {
+        $(".type").on("change", function() {
             $.ajax({
                 url: "/GetIds",
                 type: "POST",
@@ -346,6 +446,8 @@
                             '</option>';
                     });
                     $("#cust_office_vendor_id").html(html)
+                    $("#cust_vendor").html(html)
+
 
 
 
@@ -369,9 +471,9 @@
                 $("#addCustVendor").modal("show")
             });
 
-            $("#btnAddCustomer").on("click", function() {
+            // $("#btnAddCustomer").on("click", function() {
 
-            })
+            // })
         })
     </script>
 @endsection

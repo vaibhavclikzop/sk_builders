@@ -8,6 +8,7 @@ use App\Http\Controllers\InwardStock;
 use App\Http\Controllers\LeadManagement;
 use App\Http\Controllers\Masters;
 use App\Http\Controllers\OrderManagement;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResetSoftware;
 use App\Http\Controllers\Sales;
 use App\Http\Controllers\Statement;
@@ -91,6 +92,8 @@ Route::group(['middleware' => ['SuperAdmin']], function () {
 
     //statements
     Route::get('statement/{status}', [Statement::class, 'statement'])->name('statement');
+    Route::get('reports',[ReportController::class,"reports"])->name('reports');
+
 
 
     Route::post('importStatement', [Statement::class, 'importStatement'])->name('importStatement');
@@ -104,6 +107,7 @@ Route::group(['middleware' => ['SuperAdmin']], function () {
     Route::get('office-report', [Statement::class, 'officeReport'])->name('office-report');
     Route::get('project-report', [Statement::class, 'projectReport'])->name('project-report');
     Route::get('sub-account-report', [Statement::class, 'subAccountReport'])->name('sub-account-report');
+    Route::get('save-customer-vendor',[Masters::class,"addCustomerVendor"])->name('addCustomerVendor');
 
 
 

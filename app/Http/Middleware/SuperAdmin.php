@@ -30,41 +30,26 @@ class SuperAdmin
                 return redirect('/');
             } else {
 
-
                 $child_ids = [];
                 $iterable = [];
-
-
                 array_push($iterable, $user->id);
-
-
                 while (is_countable($iterable) && sizeof($iterable) > 0) {
-
                     $child_ids = array_merge($child_ids, $iterable);
-
                     try {
-
                         $users = DB::table("users")->whereIn("parent_id", $iterable)->get();
-
-
                         $iterable = [];
-
-
                         foreach ($users as $value) {
                             array_push($iterable, $value->id);
                         }
                     } catch (\Throwable $th) {
-
                         echo $msg = $th->getMessage();
                         break;
                     }
                 }
-
-
-
-
+  
                 $child_id = implode(', ', $child_ids);
                 $child_id = explode(',', $child_id);
+               
                 $rolePermissions = DB::table("role_permission")->where("role_id", $user->role_id)->get();
                 $attendance = DB::table("attendance")->where("emp_id", $user->id)->whereDate("start_time",now())->first();
 

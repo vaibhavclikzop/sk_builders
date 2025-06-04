@@ -463,47 +463,62 @@
 
                          <li>
                              <ul>
-                                 <li class="submenu">
-                                     <a href="javascript:void(0);" class="">
-                                         <i class="fa fa-users" aria-hidden="true"></i>
-                                         <span>User Management</span>
 
-                                         <span class="menu-arrow"></span>
-                                     </a>
-                                     <ul>
-                                         <li><a href="/user-role">User Role</a></li>
-                                         <li><a href="/users">Users</a></li>
+                                 @foreach ($rolePermissions as $item)
+                                     @if ($item->permission_id == 2 && $item->view == 1)
+                                         <li class="submenu">
+                                             <a href="javascript:void(0);" class="">
+                                                 <i class="fa fa-users" aria-hidden="true"></i>
+                                                 <span>User Management</span>
 
-                                     </ul>
-                                 </li>
-                                 <li class="submenu">
-                                     <a href="javascript:void(0);" class="">
+                                                 <span class="menu-arrow"></span>
+                                             </a>
+                                             <ul>
+                                                 <li><a href="/user-role">User Role</a></li>
+                                                 <li><a href="/users">Users</a></li>
 
-                                         <i class=" ti   ti-layout-grid"></i>
-                                         <span>Masters</span>
+                                             </ul>
+                                         </li>
+                                     @endif
 
-                                         <span class="menu-arrow"></span>
-                                     </a>
-                                     <ul>
-                                         <li><a href="/customers">Customers</a></li>
-                                         <li><a href="/vendor">Vendor</a></li>
-                                         <li><a href="/office">Office</a></li>
-                                         <li><a href="/project">Project</a></li>
-                                         <li><a href="/sub-account">Sub Account</a></li>
+                                     @if ($item->permission_id == 3 && $item->view == 1)
+                                         <li class="submenu">
+                                             <a href="javascript:void(0);" class="">
 
-                                     </ul>
-                                 </li>
+                                                 <i class=" ti   ti-layout-grid"></i>
+                                                 <span>Masters</span>
+
+                                                 <span class="menu-arrow"></span>
+                                             </a>
+                                             <ul>
+                                                 <li><a href="/customers">Customers</a></li>
+                                                 <li><a href="/vendor">Vendor</a></li>
+                                                 <li><a href="/office">Office</a></li>
+                                                 <li><a href="/project">Project</a></li>
+                                                 <li><a href="/sub-account">Sub Account</a></li>
+
+                                             </ul>
+                                         </li>
+                                     @endif
+                                 @endforeach
+
+                              
                                  <li>
                                      <a href="/statement/pending">
                                          <i class="fa fa-file" aria-hidden="true"></i> <span>Pending Statement</span>
                                      </a>
                                  </li>
-                                  <li>
+                                 <li>
                                      <a href="/statement/complete">
                                          <i class="fa fa-file" aria-hidden="true"></i> <span>Complete Statement</span>
                                      </a>
                                  </li>
-                                  <li class="submenu">
+                                 <li>
+                                     <a href="{{ route('reports') }}">
+                                         <i class="fa fa-file" aria-hidden="true"></i> <span>Reports</span>
+                                     </a>
+                                 </li>
+                                 {{-- <li class="submenu">
                                      <a href="javascript:void(0);" class="">
 
                                          <i class=" ti   ti-layout-grid"></i>
@@ -519,7 +534,7 @@
                                          <li><a href="/sub-account-report">Sub Account Report</a></li>
 
                                      </ul>
-                                 </li>
+                                 </li> --}}
 
 
                              </ul>
@@ -541,7 +556,7 @@
                                      </a>
                                  </li>
                                  <li>
-                                     <a href="/settings">
+                                     <a href="{{ route('Logout') }}">
                                          <i class="fa fa-sign-out" aria-hidden="true"></i> <span>Logout</span>
                                      </a>
                                  </li>

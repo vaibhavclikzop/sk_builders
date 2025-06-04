@@ -577,4 +577,64 @@ class Masters extends Controller
 
         return  redirect()->back()->with("success", "Save Successfully");
     }
+
+   public function addCustomerVendor(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'name'   => 'required',
+        'number' => 'required|digits:10',
+        'email'  => 'required|email',
+        'type'   => 'required|in:customer,vendor',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()
+                         ->withErrors($validator)
+                         ->withInput();
+    }
+
+    if ($request->type == "customer") {
+        DB::table('customers')->insert([
+            "name"      => $request->name,
+            "number"    => $request->number,
+            "email"     => $request->email,
+            "gst"       => $request->gst,
+            "address"   => $request->address,
+            "state"     => $request->state,
+            "city"      => $request->city,
+            "pincode"   => $request->pincode,
+            "active"    => $request->active,
+            "dob"       => $request->dob,
+            "pan_card"  => $request->pan_card,
+            "adhar_card"=> $request->adhar_card,
+            "so_wo"     => $request->so_wo,
+            "city1"     => $request->city1,
+            "rating"    => $request->rating,
+            "project"   => $request->project,
+            "unit_no"   => $request->unit_no,
+        ]);
+
+        return redirect()->back()->with('success', 'Customer added successfully!');
+    } 
+    else {
+        DB::table('vendor')->insert([
+            "name"       => $request->name,
+            "number"     => $request->number,
+            "email"      => $request->email,
+            "gst"        => $request->gst,
+            "address"    => $request->address,
+            "state"      => $request->state,
+            "city"       => $request->city,
+            "pincode"    => $request->pincode,
+            "active"     => $request->active,
+            "dob"        => $request->dob,
+            "pan_card"   => $request->pan_card,
+            "adhar_card" => $request->adhar_card,
+            "district"   => $request->district,
+        ]);
+
+        return redirect()->back()->with('success', 'Vendor added successfully!');
+    }
+}
+
 }

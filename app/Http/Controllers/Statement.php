@@ -229,8 +229,6 @@ class Statement extends Controller
         if ($project_id) {
             $vendor->where("a.project_id", $project_id);
         }
-
-
         $office =   DB::table("statement as a")
             ->select("a.*", "b.name as name", "c.name as project", "d.name as sub_account")
             ->join("office as b", "a.cust_office_vendor_id", "b.id")
